@@ -36,7 +36,7 @@ Este projeto consiste em um sistema completo de gerenciamento para papelarias, i
 
 ## Instalação
 
-1. Clone o repositório: `git clone https://github.com/seu-usuario/nome-do-repositorio.git`
+1. Clone o repositório: `git clone https://github.com/Josuba22/ERP_CRM_OS.git`
 2. Instale as dependências: `composer install`
 3. Configure o arquivo `.env` com as credenciais do banco de dados e APIs de pagamento.
 4. Execute as migrations: `php artisan migrate`
@@ -52,7 +52,7 @@ Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE.md](L
 
 ## Autor
 
-[Seu Nome] - [Seu Perfil do Github]
+Josué Otoniel - https://github.com/Josuba22
 
 ## Screenshots (opcional)
 
