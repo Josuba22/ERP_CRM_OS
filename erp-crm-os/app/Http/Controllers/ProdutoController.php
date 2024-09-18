@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produtos;
+use App\Models\Produto;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,8 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = Produtos::all();
+        $produtos = Produto::with('fornecedor')->get();
+
         return view('produtos.index', compact('produtos'));
     }
 
@@ -27,6 +28,7 @@ class ProdutoController extends Controller
     public function create()
     {
         $fornecedores = Fornecedor::all();
+
         return view('produtos.create', compact('fornecedores'));
     }
 
@@ -48,7 +50,7 @@ class ProdutoController extends Controller
             'fornecedor_id' => 'required|exists:fornecedores, id',
         ]);
 
-        Produtos::create($request->all());
+        Produto::create($request->all());
 
         return redirect()->route('produtos.index')->with('success', 'Produto criado com sucesso!');
     }
@@ -59,7 +61,7 @@ class ProdutoController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Produtos $produtos)
+    public function show(Produto $produto)
     {
         return view('produtos.show', compact('produto'));
     }
@@ -70,7 +72,7 @@ class ProdutoController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produtos $produtos)
+    public function edit(Produto $produto)
     {
         $fornecedores = Fornecedor::all();
         return view('produtos.edit', compact('produto', 'fornecedores'));
@@ -83,7 +85,7 @@ class ProdutoController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produtos $produtos)
+    public function update(Request $request, Produto $produto)
     {
         $request->validate([
             'nome' => 'required',
@@ -106,7 +108,7 @@ class ProdutoController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produtos $produtos)
+    public function destroy(Produto $produto)
     {
         $produto->delete();
 

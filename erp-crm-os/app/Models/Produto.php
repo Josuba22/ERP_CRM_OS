@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produtos extends Model
+class Produto extends Model
 {
     use HasFactory;
 
@@ -26,7 +26,7 @@ class Produtos extends Model
     }
 
     // Relacionamento com a tabela de itens de venda (sale_items).
-    public function vendaItems()
+    public function vendaItens()
     {
         return $this->hasMany(VendaItem::class);
     }
@@ -34,9 +34,9 @@ class Produtos extends Model
     /**
      * Relacionamento com a tabela de itens de orçamento (quote_items).
      */
-    public function orcamentoItens()
+    public function cotacaoItens()
     {
-        return $this->morphMany(OrcamentoItem::class, 'item');
+        return $this->morphMany(ItemCotacao::class, 'item');
     }
 
     // Método para formatar o preço do produto como moeda brasileira.
