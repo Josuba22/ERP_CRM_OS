@@ -25,9 +25,9 @@ use App\Http\Controllers\CotacaoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Rotas do ERP
 Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
