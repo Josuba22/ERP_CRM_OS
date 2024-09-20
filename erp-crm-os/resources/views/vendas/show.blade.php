@@ -22,15 +22,20 @@
                             <th scope = "col">Valor Total</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        @foreach($venda->vendaItens as $item)
-                            <tr>
-                                <td>{{ $item->produto->nome }}</td>
-                                <td>{{ $item->quantidade }}</td>
-                                <td>{{ $item->formatted_preco }}</td>
-                                <td>{{ $item->formatted_total }}</td>
-                            </tr>
-                        @endforeach
+                        @if($venda->itens_venda && $venda->itens_venda->count() > 0)
+                            @foreach($venda->itens_venda as $item)
+                                <tr>
+                                    <td>{{ $item->produto->nome }}</td>
+                                    <td>{{ $item->quantidade }}</td>
+                                    <td>{{ $item->formatted_preco }}</td>
+                                    <td>{{ $item->formatted_total }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <p>Não há itens nesta venda.</p>
+                        @endif
                     </tbody>
                 </table>
             </div>

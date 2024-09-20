@@ -27,10 +27,10 @@ class VendaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cliente_id' => 'required|exists:clientes, id',
-            'funcionario_id' => 'required|exists:funcionarios, id',
+            'cliente_id' => 'required|exists:clientes,id',
+            'funcionario_id' => 'required|exists:funcionarios,id',
             'itens' => 'required|array',
-            'itens.*.produto_id' => 'required|exists:produtos, id',
+            'itens.*.produto_id' => 'required|exists:produtos,id',
             'itens.*.quantidade' => 'required|integer|min:1',
         ]);
 
@@ -45,7 +45,7 @@ class VendaController extends Controller
         foreach ($request->itens as $item) {
             $produto = Produto::findOrFail($item['produto_id']);
 
-            $venda->vendaItens()->create([
+            $venda->itens_venda()->create([
                 'produto_id' => $produto->id,
                 'quantidade' => $item['quantidade'],
                 'preco' => $produto->preco,
@@ -67,11 +67,13 @@ class VendaController extends Controller
 
     public function show(Venda $venda)
     {
+        $venda->load('cliente', 'funcionario', 'itens_venda.produto');
         return view('vendas.show', compact('venda'));
     }
 
     public function edit(Venda $venda)
     {
+        $venda->load('itens_venda.produto');
         $clientes = Cliente::all();
         $funcionarios = Funcionario::all();
         $produtos = Produto::all();
@@ -81,29 +83,29 @@ class VendaController extends Controller
     public function update(Request $request, Venda $venda)
     {
         $request->validate([
-            'cliente_id' => 'required|exists:clientes, id',
-            'funcionario_id' => 'required|exists:funcionarios, id',
+            'cliente_id' => 'required|exists:clientes,id',
+            'funcionario_id' => 'required|exists:funcionarios,id',
             'itens' => 'required|array',
-            'itens.*.produto_id' => 'required|exists:produtos, id',
+            'itens.*.produto_id' => 'required|exists:produtos,id',
             'itens.*.quantidade' => 'required|integer|min:1',
         ]);
     
         // 1. Reverter o estoque dos itens da venda original
-        foreach ($venda->vendaItens as $item) {
+        foreach ($venda->itens_venda as $item) {
             $produto = $item->produto;
             $produto->estoque += $item->quantidade;
             $produto->save();
         }
     
         // 2. Excluir os itens da venda original
-        $venda->vendaItens()->delete();
+        $venda->itens_venda()->delete();
     
         // 3. Criar os novos itens da venda
         $montanteTotal = 0;
         foreach ($request->itens as $item) {
             $produto = Produto::findOrFail($item['produto_id']);
     
-            $venda->vendaItens()->create([
+            $venda->itens_venda()->create([
                 'produto_id' => $produto->id,
                 'quantidade' => $item['quantidade'],
                 'preco' => $produto->preco,
@@ -128,14 +130,14 @@ class VendaController extends Controller
     public function destroy(Venda $venda)
     {
         // 1. Reverter o estoque dos itens da venda
-        foreach ($venda->vendaItens as $item) {
+        foreach ($venda->itens_venda as $item) {
             $produto = $item->produto;
             $produto->estoque += $item->quantidade;
             $produto->save();
         }
 
         // 2. Excluir os itens da venda
-        $venda->vendaItens()->delete();
+        $venda->itens_venda()->delete();
 
         // 3. Excluir a venda
         $venda->delete();

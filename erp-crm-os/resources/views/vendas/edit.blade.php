@@ -42,31 +42,37 @@
 
             <div id="itens-venda">
                 @php $itemCount = 0; @endphp
-                @foreach($venda->vendaItens as $item)
-                    <div class="item-venda mt-2">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="produto_id">Produto:</label>
-                                <select class="form-control" name="itens[{{ $itemCount }}][produto_id]" required>
-                                    <option value="">Selecione um produto</option>
-                                    @foreach($produtos as $produto)
-                                        <option value="{{ $produto->id }}" {{ $produto->id == $item->produto_id ? 'selected' : '' }}>{{ $produto->nome }}</option>
-                                    @endforeach
-                                </select>
+                    @if($venda->itens_venda && $venda->itens_venda->count() > 0)
+                        @foreach($venda->itens_venda as $item)
+                            <div class="item-venda mt-2">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="produto_id">Produto:</label>
+                                        <select class="form-control" name="itens[{{ $itemCount }}][produto_id]" required>
+                                            <option value="">Selecione um produto</option>
+                                            @foreach($produtos as $produto)
+                                                <option value="{{ $produto->id }}" {{ $produto->id == $item->produto_id ? 'selected' : '' }}>{{ $produto->nome }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-2">
+                                        <label for="quantidade">Quantidade:</label>
+                                        <input type="number" class="form-control" name="itens[{{ $itemCount }}][quantidade]" min="1" value="{{ $item->quantidade }}" required>
+                                    </div>
+                                    
+                                    @if ($loop->first) 
+                                    <div class="form-group col-md-1">
+                                        <button type="button" class="btn btn-danger btn-sm remover-item">Remover</button>
+                                    </div>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="form-group col-md-2">
-                                <label for="quantidade">Quantidade:</label>
-                                <input type="number" class="form-control" name="itens[{{ $itemCount }}][quantidade]" min="1" value="{{ $item->quantidade }}" required>
-                            </div>
-                            @if ($loop->first) 
-                            <div class="form-group col-md-1">
-                                <button type="button" class="btn btn-danger btn-sm remover-item">Remover</button>
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-                    @php $itemCount++; @endphp
-                @endforeach
+                        @endforeach
+                    @else
+                        <p>Não há itens nesta venda.</p>
+                    @endif
+                @php $itemCount++; @endphp
             </div>
 
             <button type="button" class="btn btn-secondary" id="adicionar-item">Adicionar Item</button>
@@ -102,7 +108,7 @@
                     </div>
                 </div>
             `;
-            itensVenda.appendChild(newItem);
+            itens_venda.appendChild(newItem);
             itemCount++;
 
             // Adiciona evento para remover item

@@ -28,9 +28,9 @@ class Venda extends Model
     }
 
     // Relacionamento com a tabela de itens de venda (sale_items).
-    public function vendaItens()
+    public function itens_venda()
     {
-        return $this->hasMany(VendaItem::class);
+        return $this->hasMany(ItemVenda::class, 'venda_id');
     }
 
     // Método para formatar o valor total da venda como moeda brasileira.
