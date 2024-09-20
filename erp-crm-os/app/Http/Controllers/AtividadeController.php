@@ -43,7 +43,7 @@ class AtividadeController extends Controller
             'tipo' => 'required',
             'notas' => 'required',
             'data_vencimento' => 'required|date',
-            'concluida' => 'boolean',
+            'concluido' => 'boolean',
         ]);
 
         Atividade::create($request->all());
@@ -54,7 +54,7 @@ class AtividadeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Atividade $atividade)
     {
         return view('atividades.show', compact('atividade'));
     }
@@ -62,7 +62,7 @@ class AtividadeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Atividade $atividade)
     {
         $leads = Lead::all();
         $clientes = Cliente::all();
@@ -73,7 +73,7 @@ class AtividadeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Atividade $atividade)
     {
         $request->validate([
             'lead_id' => 'nullable|exists:leads,id',
@@ -82,7 +82,7 @@ class AtividadeController extends Controller
             'tipo' => 'required',
             'notas' => 'required',
             'data_vencimento' => 'required|date',
-            'concluida' => 'boolean',
+            'concluido' => 'boolean',
         ]);
 
         $atividade->update($request->all());
@@ -93,7 +93,7 @@ class AtividadeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Atividade $atividade)
     {
         $atividade->delete();
 

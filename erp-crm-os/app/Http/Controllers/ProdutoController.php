@@ -47,7 +47,7 @@ class ProdutoController extends Controller
             'estoque' => 'required|integer',
             'min_estoque' => 'required|integer',
             'max_estoque' => 'required|integer',
-            'fornecedor_id' => 'required|exists:fornecedores, id',
+            'fornecedor_id' => 'required|exists:fornecedores,id',
         ]);
 
         Produto::create($request->all());
@@ -94,7 +94,7 @@ class ProdutoController extends Controller
             'estoque' => 'required|integer',
             'min_estoque' => 'required|integer',
             'max_estoque' => 'required|integer',
-            'fornecedor_id' => 'required|exists:fornecedores, id',
+            'fornecedor_id' => 'required|exists:fornecedores,id',
         ]);
 
         $produto->update($request->all());

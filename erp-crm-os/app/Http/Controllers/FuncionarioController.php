@@ -47,7 +47,7 @@ class FuncionarioController extends Controller
     {
         $request->validate([
             'nome' => 'required',
-            'email' => 'required|email|unique:funcionarios, email,' . $funcionario->id,
+            'email' => 'required|email|unique:funcionarios,email,' . $funcionario->id,
             'fone' => 'required',
             'cargo' => 'required',
             'taxa_comissao' => 'nullable|numeric',

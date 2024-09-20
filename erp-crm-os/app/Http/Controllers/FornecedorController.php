@@ -21,10 +21,13 @@ class FornecedorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required',
+            'razao_social' => 'required',
             'email' => 'required|email|unique:fornecedores',
             'fone' => 'required',
             'endereco' => 'required',
+            'cnpj' => 'required',
+            'inscricao_estadual' => 'nullable',
+            'observacoes' => 'nullable',
         ]);
 
         Fornecedor::create($request->all());
@@ -45,10 +48,13 @@ class FornecedorController extends Controller
     public function update(Request $request, Fornecedor $fornecedor)
     {
         $request->validate([
-            'nome' => 'required',
+            'razao_social' => 'required',
             'email' => 'required|email|unique:fornecedores,email,' . $fornecedor->id,
             'fone' => 'required',
             'endereco' => 'required',
+            'cnpj' => 'required',
+            'inscricao_estadual' => 'nullable',
+            'observacoes' => 'nullable',
         ]);
 
         $fornecedor->update($request->all());

@@ -43,7 +43,7 @@ class ServicoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Servico $servico)
     {
         return view('servicos.show', compact('servico'));
     }
@@ -51,7 +51,7 @@ class ServicoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Servico $servico)
     {
         return view('servicos.edit', compact('servico'));
     }
@@ -59,7 +59,7 @@ class ServicoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Servico $servico)
     {
         $request->validate([
             'nome' => 'required',
@@ -75,7 +75,7 @@ class ServicoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Servico $servico)
     {
         $servico->delete();
 

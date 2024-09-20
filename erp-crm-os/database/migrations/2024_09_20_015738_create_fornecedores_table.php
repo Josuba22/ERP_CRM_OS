@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('fornecedores', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->string('razao_social');
             $table->string('email')->unique();
-            $table->string('fone');
-            $table->string('endereco');
+            $table->string('fone'); // Pode ser string para aceitar formatos diversos
+            $table->string('endereco'); 
+            $table->string('cnpj'); // CNPJ (opcional)
+            $table->string('inscricao_estadual')->nullable(); // Inscrição Estadual
+            $table->text('observacoes')->nullable(); // Campo para observações adicionais
             $table->timestamps();
         });
     }

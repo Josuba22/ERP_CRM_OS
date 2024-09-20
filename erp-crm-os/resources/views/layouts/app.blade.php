@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ERP & CRM Papelaria</title>
+        <title>ERP & CRM | Perart</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
         @yield('styles') 
@@ -11,41 +11,41 @@
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ route('dashboard') }}">ERP & CRM Papelaria</a>
+            <a class="navbar-brand" href="{{ route('dashboard') }}">ERP & CRM Perart Papelaria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">Produtos</a>
+                        <a class="nav-link" href="{{ route('produtos.index') }}">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('services.index') }}">Serviços</a>
+                        <a class="nav-link" href="{{ route('servicos.index') }}">Serviços</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('customers.index') }}">Clientes</a>
+                        <a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('suppliers.index') }}">Fornecedores</a>
+                        <a class="nav-link" href="{{ route('fornecedores.index') }}">Fornecedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('employees.index') }}">Funcionários</a>
+                        <a class="nav-link" href="{{ route('funcionarios.index') }}">Funcionários</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('sales.index') }}">Vendas</a>
+                        <a class="nav-link" href="{{ route('vendas.index') }}">Vendas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('quotes.index') }}">Orçamentos</a>
+                        <a class="nav-link" href="{{ route('cotacoes.index') }}">Orçamentos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('leads.index') }}">Leads</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('opportunities.index') }}">Oportunidades</a>
+                        <a class="nav-link" href="{{ route('oportunidades.index') }}">Oportunidades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('activities.index') }}">Atividades</a>
+                        <a class="nav-link" href="{{ route('atividades.index') }}">Atividades</a>
                     </li>
                     <!-- Outros links do menu -->
                 </ul>

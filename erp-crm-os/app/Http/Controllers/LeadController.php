@@ -46,7 +46,7 @@ class LeadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Lead $lead)
     {
         return view('leads.show', compact('lead'));
     }
@@ -54,7 +54,7 @@ class LeadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Lead $lead)
     {
         return view('leads.edit', compact('lead'));
     }
@@ -62,7 +62,7 @@ class LeadController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Lead $lead)
     {
         $request->validate([
             'nome' => 'required',
@@ -80,7 +80,7 @@ class LeadController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Lead $lead)
     {
         $lead->delete();
 

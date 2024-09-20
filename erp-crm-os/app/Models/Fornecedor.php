@@ -10,10 +10,13 @@ class Fornecedor extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nome',
+        'razao_social',
         'email',
         'fone',
         'endereco',
+        'cnpj',
+        'inscricao_estadual',
+        'observacoes',
     ];
 
     // Relacionamento com a tabela de produtos (products).

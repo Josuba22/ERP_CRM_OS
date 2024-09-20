@@ -50,7 +50,7 @@ class OportunidadeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Oportunidade $id)
     {
         return view('oportunidades.show', compact('oportunidade'));
     }
@@ -58,7 +58,7 @@ class OportunidadeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Oportunidade $id)
     {
         $leads = Lead::all();
         $clientes = Cliente::all();
@@ -68,7 +68,7 @@ class OportunidadeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Oportunidade $id)
     {
         $request->validate([
             'lead_id' => 'nullable|exists:leads,id',
@@ -87,7 +87,7 @@ class OportunidadeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Oportunidade $id)
     {
         $oportunidade->delete();
 

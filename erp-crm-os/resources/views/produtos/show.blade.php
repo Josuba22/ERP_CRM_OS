@@ -10,9 +10,9 @@
                 <p class="card-text"><strong>Descrição:</strong> {{ $produto->descricao }}</p>
                 <p class="card-text"><strong>Preço:</strong> {{ $produto->formatted_preco }}</p>
                 <p class="card-text"><strong>Estoque:</strong> {{ $produto->estoque }}</p>
-                <p class="card-text"><strong>Estoque Mínimo:</strong> {{ $produto->estoque_minimo }}</p>
-                <p class="card-text"><strong>Estoque Máximo:</strong> {{ $produto->estoque_maximo }}</p>
-                <p class="card-text"><strong>Fornecedor:</strong> {{ $produto->fornecedor->nome }}</p>
+                <p class="card-text"><strong>Estoque Mínimo:</strong> {{ $produto->min_estoque }}</p>
+                <p class="card-text"><strong>Estoque Máximo:</strong> {{ $produto->max_estoque }}</p>
+                <p class="card-text"><strong>Fornecedor:</strong> {{ $produto->fornecedor->razao_social }}</p>
             </div>
         </div>
 

@@ -39,13 +39,13 @@
             </div>
 
             <div class="form-group">
-                <label for="estoque_minimo">Estoque Mínimo:</label>
-                <input type="number" class="form-control" id="estoque_minimo" name="estoque_minimo" value="{{ old('estoque_minimo', $produto->estoque_minimo) }}" required>
+                <label for="min_estoque">Estoque Mínimo:</label>
+                <input type="number" class="form-control" id="min_estoque" name="min_estoque" value="{{ old('min_estoque', $produto->min_estoque) }}" required>
             </div>
 
             <div class="form-group">
-                <label for="estoque_maximo">Estoque Máximo:</label>
-                <input type="number" class="form-control" id="estoque_maximo" name="estoque_maximo" value="{{ old('estoque_maximo', $produto->estoque_maximo) }}" required>
+                <label for="max_estoque">Estoque Máximo:</label>
+                <input type="number" class="form-control" id="max_estoque" name="max_estoque" value="{{ old('max_estoque', $produto->max_estoque) }}" required>
             </div>
 
             <div class="form-group">
@@ -53,7 +53,7 @@
                 <select class="form-control" id="fornecedor_id" name="fornecedor_id" required>
                     <option value="">Selecione um fornecedor</option>
                     @foreach($fornecedores as $fornecedor)
-                        <option value="{{ $fornecedor->id }}" {{ old('fornecedor_id', $produto->fornecedor_id) == $fornecedor->id ? 'selected' : '' }}>{{ $fornecedor->nome }}</option>
+                        <option value="{{ $fornecedor->id }}" {{ old('fornecedor_id', $produto->fornecedor_id) === $fornecedor->id ? 'selected' : '' }}>{{ $fornecedor->razao_social }}</option>
                     @endforeach
                 </select>
             </div>

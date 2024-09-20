@@ -85,7 +85,7 @@ class CotacaoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Cotacao $cotacao)
     {
         return view('cotacoes.show', compact('cotacao'));
     }
@@ -93,7 +93,7 @@ class CotacaoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Cotacao $cotacao)
     {
         $clientes = Cliente::all();
         $produtos = Produto::all();
@@ -105,7 +105,7 @@ class CotacaoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Cotacao $cotacao)
     {
         $request->validate([
             'cliente_id' => 'required|exists:clientes,id',
@@ -153,7 +153,7 @@ class CotacaoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Cotacao $cotacao)
     {
         $cotacao->itensCotacao()->delete();
         $cotacao->delete();
