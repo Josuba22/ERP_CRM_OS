@@ -23,6 +23,7 @@
                     <th scope = "col">Ações</th>
                 </tr>
             </thead>
+            
             <tbody>
                 @foreach($vendas as $venda)
                     <tr>

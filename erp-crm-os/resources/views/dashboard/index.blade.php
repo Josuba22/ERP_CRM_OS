@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-6 mb-3">
                 <div class="card clickable" data-chart="vendas">
-                    <div class="card-body">
+                    <div class="card-body text-white bg-info">
                         <h5 class="card-title">Total de Vendas</h5>
                         <p class="card-text">R$ {{ number_format($totalVendas, 2, ',', '.') }}</p>
                     </div>
@@ -16,7 +16,7 @@
 
             <div class="col-md-3 col-sm-6 mb-3">
                 <div class="card clickable" data-chart="produtos">
-                    <div class="card-body">
+                    <div class="card-body text-white bg-info">
                         <h5 class="card-title">Total de Produtos</h5>
                         <p class="card-text">{{ $totalProdutos }}</p>
                     </div>
@@ -25,16 +25,16 @@
 
             <div class="col-md-3 col-sm-6 mb-3">
                 <div class="card clickable" data-chart="clientes">
-                    <div class="card-body">
+                    <div class="card-body text-white bg-info">
                         <h5 class="card-title">Total de Clientes</h5>
                         <p class="card-text">{{ $totalClientes }}</p>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-3 col-sm-6 mb-3">
                 <div class="card clickable" data-chart="funcionarios">
-                    <div class="card-body">
+                    <div class="card-body text-white bg-info">
                         <h5 class="card-title">Total de Funcionários</h5>
                         <p class="card-text">{{ $totalFuncionarios }}</p>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="btn-group mb-3" role="group">
                             <button type="button" class="btn btn-secondary" id="toggleChartType">Alternar Tipo de Gráfico</button>
                         </div>
-                        
+
                         <div class="chart-container">
                             <canvas id="chartCanvas"></canvas>
                         </div>
@@ -93,7 +93,7 @@
 
         function createChart(type, data) {
             const ctx = document.getElementById('chartCanvas').getContext('2d');
-            
+
             if (currentChart) {
                 currentChart.destroy();
             }

@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
         // Dados para os gráficos
         $vendasPorMes = Venda::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as mes, SUM(montante_total) as total')
-            ->groupBy('mes')
+            ->groupBy('mes', 'montante_total')
             ->orderBy('mes')
             ->get();
 

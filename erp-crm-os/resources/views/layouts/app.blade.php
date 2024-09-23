@@ -5,13 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ERP & CRM | Perart</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
-        @yield('styles') 
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        @yield('styles')
     </head>
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ route('dashboard') }}">ERP & CRM Perart Papelaria</a>
+            <a class="navbar-brand" href="{{ route('dashboard') }}">
+                @if (config('app.logo'))
+                    <img src="{{ asset(Storage::url(config('app.logo'))) }}" alt="Logo Perart" height="50">
+                @endif
+                ERP & CRM Perart Papelaria
+            </a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

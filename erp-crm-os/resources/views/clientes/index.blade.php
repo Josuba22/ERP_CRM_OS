@@ -12,8 +12,8 @@
             </div>
         @endif
 
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-hover">
+            <thead class = "table-success">
                 <tr>
                     <th scope = "col">ID</th>
                     <th scope = "col">Nome</th>

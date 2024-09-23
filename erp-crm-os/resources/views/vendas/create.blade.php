@@ -59,9 +59,15 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-secondary" id="adicionar-item">Adicionar Item</button>
+            <div>
+                <div>
+                    <button type="button" class="btn btn-secondary" id="adicionar-item">Adicionar Item</button>
+                </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Registrar Venda</button>
+                <div>
+                    <button type="submit" class="btn btn-primary mt-3">Registrar Venda</button>
+                </div>
+            </div>
         </form>
     </div>
 
