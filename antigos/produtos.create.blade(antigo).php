@@ -14,17 +14,12 @@
             </div>
         @endif
 
-        <form action="{{ route('produtos.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('produtos.store') }}" method="POST">
             @csrf
 
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" class="form-control" id="nome" name="nome" value="{{ old('nome') }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="categoria">Categoria:</label>
-                <input type="text" class="form-control" id="categoria" name="categoria" value="{{ old('categoria') }}" required>
             </div>
 
             <div class="form-group">
@@ -57,14 +52,9 @@
                 <select class="form-control" id="fornecedor_id" name="fornecedor_id" required>
                     <option value="">Selecione um fornecedor</option>
                     @foreach($fornecedores as $fornecedor)
-                        <option value="{{ $fornecedor->id }}" {{ old('fornecedor_id') == $fornecedor->id ? 'selected' : '' }}>{{ $fornecedor->razao_social }}</option>
+                        <option value="{{ $fornecedor->id }}" {{ old('fornecedor_id') === $fornecedor->id ? 'selected' : '' }}>{{ $fornecedor->razao_social }}</option>
                     @endforeach
                 </select>
-            </div>
-
-            <div class="form-group">
-                <label for="foto">Foto do Produto:</label>
-                <input type="file" class="form-control-file" id="foto" name="foto">
             </div>
 
             <button type="submit" class="btn btn-primary">Criar Produto</button>

@@ -20,9 +20,11 @@
                     <th scope = "col">Email</th>
                     <th scope = "col">Telefone</th>
                     <th scope = "col">Endereço</th>
+                    <th scope = "col">Tipo</th>
                     <th scope = "col">Ações</th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach($clientes as $cliente)
                     <tr>
@@ -31,6 +33,7 @@
                         <td>{{ $cliente->email }}</td>
                         <td>{{ $cliente->fone }}</td>
                         <td>{{ $cliente->endereco }}</td>
+                        <td>{{ $cliente->tipo }}</td>
                         <td>
                             <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-sm btn-info">Visualizar</a>
                             <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-sm btn-warning">Editar</a>

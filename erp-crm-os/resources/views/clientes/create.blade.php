@@ -37,6 +37,16 @@
                 <input type="text" class="form-control" id="endereco" name="endereco" value="{{ old('endereco') }}" required>
             </div>
 
+            <div class="form-group">
+                <label for="tipo">Tipo de Cliente:</label>
+                <select class="form-control" id="tipo" name="tipo" required>
+                    <option value="">Selecione um tipo</option>
+                    @foreach(\App\Models\Cliente::getTipos() as $tipo)
+                        <option value="{{ $tipo }}" {{ old('tipo') == $tipo ? 'selected' : '' }}>{{ $tipo }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">Criar Cliente</button>
         </form>
     </div>

@@ -15,15 +15,13 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Foto</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Preço</th>
-                    <th scope="col">Estoque</th>
-                    <th scope="col">Fornecedor</th>
-                    <th scope="col">Ações</th>
+                    <th scope = "col">ID</th>
+                    <th scope = "col">Nome</th>
+                    <th scope = "col">Descrição</th>
+                    <th scope = "col">Preço</th>
+                    <th scope = "col">Estoque</th>
+                    <th scope = "col">Fornecedor</th>
+                    <th scope = "col">Ações</th>
                 </tr>
             </thead>
             
@@ -31,19 +29,11 @@
                 @foreach($produtos as $produto)
                     <tr>
                         <td>{{ $produto->id }}</td>
-                        <td>
-                            @if($produto->foto)
-                                <img src="{{ asset(Storage::url($produto->foto)) }}" alt="Foto do Produto" class="img-thumbnail" style="max-width: 50px;">
-                            @else
-                                Sem foto
-                            @endif
-                        </td>
                         <td>{{ $produto->nome }}</td>
-                        <td>{{ $produto->categoria }}</td>
-                        <td>{{ Str::limit($produto->descricao, 30) }}</td>
+                        <td>{{ $produto->descricao }}</td>
                         <td>{{ $produto->formatted_preco }}</td>
                         <td>{{ $produto->estoque }}</td>
-                        <td>{{ $produto->fornecedor->razao_social }}</td>
+                        <td>{{ $produto->fornecedor->nome }}</td>
                         <td>
                             <a href="{{ route('produtos.show', $produto->id) }}" class="btn btn-sm btn-info">Visualizar</a>
                             <a href="{{ route('produtos.edit', $produto->id) }}" class="btn btn-sm btn-warning">Editar</a>

@@ -11,9 +11,11 @@ class Cliente extends Model
 
     protected $fillable = [
         'nome',
+        'tipo',
         'email',
         'fone',
         'endereco',
+        'tipo', // Novo campo para o tipo de cliente
     ];
 
     // Relacionamento com a tabela de vendas (sales).
@@ -38,5 +40,11 @@ class Cliente extends Model
     public function oportunidades()
     {
         return $this->hasMany(Oportunidade::class);
+    }
+
+    // Método para obter os tipos de clientes
+    public static function getTipos()
+    {
+        return ['Pessoa Física', 'Pessoa Jurídica', 'Outro'];
     }
 }

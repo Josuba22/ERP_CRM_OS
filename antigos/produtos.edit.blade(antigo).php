@@ -14,18 +14,13 @@
             </div>
         @endif
 
-        <form action="{{ route('produtos.update', $produto->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('produtos.update', $produto->id) }}" method="POST">
             @csrf
             @method('PUT')
 
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" class="form-control" id="nome" name="nome" value="{{ old('nome', $produto->nome) }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="categoria">Categoria:</label>
-                <input type="text" class="form-control" id="categoria" name="categoria" value="{{ old('categoria', $produto->categoria) }}" required>
             </div>
 
             <div class="form-group">
@@ -58,22 +53,10 @@
                 <select class="form-control" id="fornecedor_id" name="fornecedor_id" required>
                     <option value="">Selecione um fornecedor</option>
                     @foreach($fornecedores as $fornecedor)
-                        <option value="{{ $fornecedor->id }}" {{ old('fornecedor_id', $produto->fornecedor_id) == $fornecedor->id ? 'selected' : '' }}>{{ $fornecedor->razao_social }}</option>
+                        <option value="{{ $fornecedor->id }}" {{ old('fornecedor_id', $produto->fornecedor_id) === $fornecedor->id ? 'selected' : '' }}>{{ $fornecedor->razao_social }}</option>
                     @endforeach
                 </select>
             </div>
-
-            <div class="form-group">
-                <label for="foto">Foto do Produto:</label>
-                <input type="file" class="form-control-file" id="foto" name="foto">
-            </div>
-
-            @if($produto->foto)
-                <div class="form-group">
-                    <label>Foto atual:</label>
-                    <img src="{{ asset(Storage::url($produto->foto)) }}" alt="Foto do Produto" class="img-thumbnail" style="max-width: 200px;">
-                </div>
-            @endif
 
             <button type="submit" class="btn btn-primary">Atualizar Produto</button>
         </form>

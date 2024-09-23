@@ -95,23 +95,16 @@
             itensVenda.appendChild(newItem);
             itemCount++;
 
-            // Adiciona evento para remover item
-            const removerItemButtons = document.querySelectorAll('.remover-item');
-            removerItemButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    this.parentNode.parentNode.parentNode.remove();
-                    itemCount--;
-                });
-            });
+            addRemoveItemListener(newItem.querySelector('.remover-item'));
         });
 
-        // Adiciona evento para remover item (itens iniciais)
-        const removerItemButtons = document.querySelectorAll('.remover-item');
-        removerItemButtons.forEach(button => {
+        function addRemoveItemListener(button) {
             button.addEventListener('click', function() {
-                this.parentNode.parentNode.parentNode.remove();
-                itemCount--;
+                this.closest('.item-venda').remove();
             });
-        });
+        }
+
+        // Adiciona evento para remover item (itens iniciais)
+        document.querySelectorAll('.remover-item').forEach(addRemoveItemListener);
     </script>
 @endsection

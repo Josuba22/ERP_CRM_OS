@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('max_estoque')->default(100);
             $table->unsignedBigInteger('fornecedor_id');
             $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
-            $table->string('foto')->nullable(); // Adicionada a coluna para a foto
             $table->timestamps();
         });
     }

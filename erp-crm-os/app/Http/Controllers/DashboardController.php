@@ -7,6 +7,7 @@ use App\Models\Venda;
 use App\Models\Produto;
 use App\Models\Cliente;
 use App\Models\Funcionario;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -20,62 +21,34 @@ class DashboardController extends Controller
         $totalClientes = Cliente::count();
         $totalFuncionarios = Funcionario::count();
 
-        // Outros dados para o dashboard, como gráficos de vendas, etc.
+        // Dados para os gráficos
+        $vendasPorMes = Venda::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as mes, SUM(montante_total) as total')
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->get();
+
+        $produtosPorCategoria = Produto::selectRaw('categoria, COUNT(*) as total')
+            // ->join('fornecedores', 'produtos.fornecedor_id', '=', 'fornecedores.id')
+            ->groupBy('categoria')
+            ->get();
+
+        $clientesPorTipo = Cliente::selectRaw('tipo, COUNT(*) as total')
+            ->groupBy('tipo')
+            ->get();
+
+        $funcionariosPorCargo = Funcionario::selectRaw('cargo, COUNT(*) as total')
+            ->groupBy('cargo')
+            ->get();
 
         return view('dashboard.index', compact(
             'totalVendas',
             'totalProdutos',
             'totalClientes',
-            'totalFuncionarios'
-            // ... outras variáveis para o dashboard
+            'totalFuncionarios',
+            'vendasPorMes',
+            'produtosPorCategoria',
+            'clientesPorTipo',
+            'funcionariosPorCargo',
         ));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Dashboard $dashboard)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Dashboard $dashboard)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Dashboard $dashboard)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Dashboard $dashboard)
-    {
-        //
     }
 }

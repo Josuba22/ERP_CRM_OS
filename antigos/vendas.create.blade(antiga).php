@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>Editar Venda</h1>
+        <h1>Criar Nova Venda</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -14,16 +14,15 @@
             </div>
         @endif
 
-        <form action="{{ route('vendas.update', $venda->id) }}" method="POST">
+        <form action="{{ route('vendas.store') }}" method="POST">
             @csrf
-            @method('PUT')
 
             <div class="form-group">
                 <label for="cliente_id">Cliente:</label>
                 <select class="form-control" id="cliente_id" name="cliente_id" required>
                     <option value="">Selecione um cliente</option>
                     @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}" {{ old('cliente_id', $venda->cliente_id) == $cliente->id ? 'selected' : '' }}>{{ $cliente->nome }}</option>
+                        <option value="{{ $cliente->id }}" {{ old('cliente_id') == $cliente->id ? 'selected' : '' }}>{{ $cliente->nome }}</option>
                     @endforeach
                 </select>
             </div>
@@ -33,7 +32,7 @@
                 <select class="form-control" id="funcionario_id" name="funcionario_id" required>
                     <option value="">Selecione um funcionário</option>
                     @foreach($funcionarios as $funcionario)
-                        <option value="{{ $funcionario->id }}" {{ old('funcionario_id', $venda->funcionario_id) == $funcionario->id ? 'selected' : '' }}>{{ $funcionario->nome }}</option>
+                        <option value="{{ $funcionario->id }}" {{ old('funcionario_id') == $funcionario->id ? 'selected' : '' }}>{{ $funcionario->nome }}</option>
                     @endforeach
                 </select>
             </div>
@@ -41,40 +40,33 @@
             <h2>Itens da Venda</h2>
 
             <div id="itens-venda">
-                @forelse($venda->itens_venda as $index => $item)
-                    <div class="item-venda mt-2">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="produto_id">Produto:</label>
-                                <select class="form-control" name="itens[{{ $index }}][produto_id]" required>
-                                    <option value="">Selecione um produto</option>
-                                    @foreach($produtos as $produto)
-                                        <option value="{{ $produto->id }}" {{ $produto->id == $item->produto_id ? 'selected' : '' }}>{{ $produto->nome }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="quantidade">Quantidade:</label>
-                                <input type="number" class="form-control" name="itens[{{ $index }}][quantidade]" min="1" value="{{ $item->quantidade }}" required>
-                            </div>
-                            <div class="form-group col-md-1">
-                                <button type="button" class="btn btn-danger btn-sm remover-item">Remover</button>
-                            </div>
+                <div class="item-venda">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="produto_id">Produto:</label>
+                            <select class="form-control" name="itens[0][produto_id]" required>
+                                <option value="">Selecione um produto</option>
+                                @foreach($produtos as $produto)
+                                    <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="quantidade">Quantidade:</label>
+                            <input type="number" class="form-control" name="itens[0][quantidade]" min="1" value="1" required>
                         </div>
                     </div>
-                @empty
-                    <p>Não há itens nesta venda.</p>
-                @endforelse
+                </div>
             </div>
 
             <button type="button" class="btn btn-secondary" id="adicionar-item">Adicionar Item</button>
 
-            <button type="submit" class="btn btn-primary mt-3">Atualizar Venda</button>
+            <button type="submit" class="btn btn-primary mt-3">Registrar Venda</button>
         </form>
     </div>
 
     <script>
-        let itemCount = {{ $venda->itens_venda->count() }};
+        let itemCount = 1;
 
         document.getElementById('adicionar-item').addEventListener('click', function() {
             const itensVenda = document.getElementById('itens-venda');
@@ -103,16 +95,23 @@
             itensVenda.appendChild(newItem);
             itemCount++;
 
-            addRemoveItemListener(newItem.querySelector('.remover-item'));
+            // Adiciona evento para remover item
+            const removerItemButtons = document.querySelectorAll('.remover-item');
+            removerItemButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.parentNode.parentNode.parentNode.remove();
+                    itemCount--;
+                });
+            });
         });
 
-        function addRemoveItemListener(button) {
-            button.addEventListener('click', function() {
-                this.closest('.item-venda').remove();
-            });
-        }
-
         // Adiciona evento para remover item (itens iniciais)
-        document.querySelectorAll('.remover-item').forEach(addRemoveItemListener);
+        const removerItemButtons = document.querySelectorAll('.remover-item');
+        removerItemButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.parentNode.parentNode.parentNode.remove();
+                itemCount--;
+            });
+        });
     </script>
 @endsection

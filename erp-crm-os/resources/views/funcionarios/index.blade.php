@@ -24,6 +24,7 @@
                     <th scope = "col">Ações</th>
                 </tr>
             </thead>
+            
             <tbody>
                 @foreach($funcionarios as $funcionario)
                     <tr>

@@ -4,22 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Produto extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nome',
-        'categoria',
+        'nome', 
         'descricao', 
         'preco', 
         'estoque', 
         'min_estoque',
         'max_estoque',
         'fornecedor_id',
-        'foto', // Adicionado o campo 'foto' aos fillables
     ];
 
     // Relacionamento com a tabela de fornecedores (suppliers).
@@ -43,20 +40,14 @@ class Produto extends Model
     }
 
     // Método para formatar o preço do produto como moeda brasileira.
-    public function getFormattedPrecoAttribute()
+    public function getFormattedPriceAttribute()
     {
         return 'R$ ' . number_format($this->preco, 2, ',', '.');
     }
 
-    // Acessor para obter a URL completa da foto
-    public function getFotoUrlAttribute()
-    {
-        return $this->foto ? asset($this->foto) : null;
-    }
-
     // Escopo para produtos com estoque baixo.
-    public function scopeEstoqueBaixo($query)
+    public function escopoEstoqueBaixo($query)
     {
-        return $query->whereRaw('estoque <= min_estoque');
+        return $query->where('estoque', '<=', 'min_estoque');
     }
 }

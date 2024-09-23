@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Venda extends Model
 {
@@ -37,5 +38,17 @@ class Venda extends Model
     public function getFormattedTotalAmountAttribute()
     {
         return 'R$ ' . number_format($this->montante_total, 2, ',', '.');
+    }
+
+    // Método para obter vendas por mês
+    public static function getVendasPorMes($ano = null)
+    {
+        $ano = $ano ?? date('Y');
+
+        return static::selectRaw('MONTH(created_at) as mes, SUM(montante_total) as total')
+            ->whereYear('created_at', $ano)
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->get();
     }
 }

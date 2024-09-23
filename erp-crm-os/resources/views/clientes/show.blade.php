@@ -10,6 +10,7 @@
                 <p class="card-text"><strong>Email:</strong> {{ $cliente->email }}</p>
                 <p class="card-text"><strong>Telefone:</strong> {{ $cliente->fone }}</p>
                 <p class="card-text"><strong>Endereço:</strong> {{ $cliente->endereco }}</p>
+                <p class="card-text"><strong>Tipo:</strong> {{ $cliente->tipo }}</p>
             </div>
         </div>
 

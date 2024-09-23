@@ -6,11 +6,7 @@
 
         <div class="card">
             <div class="card-body">
-                @if($produto->foto)
-                    <img src="{{ asset(Storage::url($produto->foto)) }}" alt="Foto do Produto" class="img-thumbnail" style="max-width: 300px;">
-                @endif
                 <h5 class="card-title">{{ $produto->nome }}</h5>
-                <p class="card-text"><strong>Categoria:</strong> {{ $produto->categoria }}</p>
                 <p class="card-text"><strong>Descrição:</strong> {{ $produto->descricao }}</p>
                 <p class="card-text"><strong>Preço:</strong> {{ $produto->formatted_preco }}</p>
                 <p class="card-text"><strong>Estoque:</strong> {{ $produto->estoque }}</p>
